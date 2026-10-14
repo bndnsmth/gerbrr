@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141b22">
+  <meta name="description" content="Gerbrr — Gerber viewing at ridiculous speed. Rust, WebAssembly, WebGPU, and private local file viewing.">
+  <link rel="canonical" href="https://gerbrr.bndnsmth.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gerbrr — Gerber viewing at ridiculous speed.">
+  <meta property="og:description" content="A fast, local-first Gerber viewer. Open your board in the browser. No uploads, accounts, or analytics.">
+  <meta property="og:url" content="https://gerbrr.bndnsmth.com/">
+  <meta property="og:image" content="https://gerbrr.bndnsmth.com/preview.png">
+  <meta property="og:image:alt" content="Gerbrr's native workspace showing copper traces, silkscreen, and layer controls on the Atlas demo board.">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Gerbrr — Gerber viewing at ridiculous speed.</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <canvas id="gerbrr" aria-label="Gerbrr Gerber viewer workspace"></canvas>
+  <section id="startup" aria-live="polite">
+    <div class="welcome">
+      <img src="./icon.svg" width="88" height="88" alt="Gerbrr's gerbil mascot wearing safety goggles">
+      <p class="eyebrow">GERBRR / WEB PROOF OF CONCEPT</p>
+      <h1>Gerber viewing at ridiculous speed.</h1>
+      <p class="description">Safety goggles on. Gerbers in.<br>The native Rust workspace, powered by WebAssembly and your GPU.<br>Your boards stay in your browser. Nothing gets uploaded.</p>
+      <p id="startup-status">Initializing the GPU workspace…</p>
+      <p class="requirements">WebGPU preferred. WebGL2 fallback. Hardware acceleration recommended.<br>Desktop-sized displays are recommended for this PoC.</p>
+    </div>
+  </section>
+  <dialog id="small-screen" aria-labelledby="small-screen-title" aria-describedby="small-screen-description">
+    <div class="screen-card">
+      <img src="./icon.svg" width="80" height="80" alt="Gerbrr's gerbil mascot wearing safety goggles">
+      <p class="eyebrow">GERBRR / DESKTOP-FIRST, FOR NOW</p>
+      <h1 id="small-screen-title">Better on a <br>bigger screen.</h1>
+      <p id="small-screen-description">Gerbrr is currently optimized for desktop-sized screens. Open this link on a laptop or desktop for the full workspace.</p>
+      <p class="screen-privacy">Your boards stay local. <br>Nothing is uploaded.</p>
+      <button id="continue-small-screen" type="button" autofocus>Continue anyway</button>
+      <p class="screen-caveat">You can still try it here, but the desktop controls may feel cramped.</p>
+    </div>
+  </dialog>
+  <div id="drop-overlay" hidden><div><h2>Drop your board here</h2><p>ZIP archives, Gerber layers, and Excellon drills</p></div></div>
+  <div id="notice" role="status" aria-live="polite" hidden></div>
+  <input id="file-input" type="file" multiple hidden aria-label="Open Gerber files or ZIP">
+  <input id="folder-input" type="file" multiple webkitdirectory hidden aria-label="Open Gerber folder">
+  <script type="module" src="./main.js"></script>
+  <noscript><p class="noscript">Gerbrr needs JavaScript and WebGPU or WebGL2. <a href="https://github.com/bndnsmth/gerbrr">Get the native viewer on GitHub.</a></p></noscript>
+</body>
+</html>

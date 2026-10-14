@@ -1,0 +1,13 @@
+/target/
+*.png
+!/assets/preview.png
+!/assets/gerbrr.png
+!/assets/github.png
+/web/pkg/
+/node_modules/
+/dist/
+/.wrangler/
+/.gerbrr-site-*/
+.env
+.env.*
+!/.env.example

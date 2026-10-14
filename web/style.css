@@ -1,0 +1,54 @@
+:root { color-scheme: dark; font-family: ui-sans-serif, system-ui, sans-serif; background: #0d1319; color: #dde6ed; }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+#gerbrr { display: block; width: 100vw; height: 100dvh; touch-action: none; }
+#startup { position: fixed; inset: 0; display: grid; place-items: center; padding: 24px; background: #0d1319; }
+#startup[hidden], [hidden] { display: none !important; }
+.welcome { max-width: 660px; padding: 48px; border: 1px solid #2b353f; border-radius: 18px; background: #141b22; box-shadow: 0 30px 100px #0005; }
+.eyebrow { margin: 25px 0 14px; color: #90dbbe; font-size: 11px; font-weight: 650; letter-spacing: 2px; }
+h1 { margin: 0 0 20px; font-size: clamp(26px, 4vw, 40px); letter-spacing: -1.5px; font-weight: 550; }
+.description { color: #8595a1; font-size: 15px; line-height: 1.8; }
+#startup-status { margin-top: 26px; color: #90dbbe; white-space: pre-line; overflow-wrap: anywhere; }
+.requirements { margin-top: 24px; color: #8595a1; font-size: 11px; line-height: 1.7; }
+#drop-overlay { position: fixed; inset: 18px; display: grid; place-items: center; border: 2px solid #90dbbe; border-radius: 14px; background: #0d1c1af2; pointer-events: none; z-index: 5; color: #90dbbe; text-align: center; }
+#drop-overlay h2 { font-size: 30px; font-weight: 550; margin: 0 0 16px; }
+#drop-overlay p { color: #dde6ed; }
+#notice { position: fixed; right: 22px; bottom: 45px; max-width: min(480px, calc(100vw - 44px)); padding: 12px 18px; border: 1px solid #37534c; border-radius: 8px; background: #141b22f5; color: #90dbbe; font-size: 12px; line-height: 1.5; pointer-events: none; z-index: 6; box-shadow: 0 10px 40px #0004; }
+#notice[data-error="true"] { color: #f2b170; border-color: #665443; }
+.noscript { position: fixed; inset: auto 24px 24px; padding: 18px; border: 1px solid #37534c; border-radius: 8px; background: #141b22; color: #dde6ed; }
+.noscript a { color: #90dbbe; }
+#small-screen { inset: 0; margin: 0; width: 100%; height: 100dvh; max-width: none; max-height: none; padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)); border: 0; color: #dde6ed; background: radial-gradient(ellipse at 50% 0%, #90dbbe10, transparent 65%), #0d1319; overflow-y: auto; overscroll-behavior: contain; }
+#small-screen[open] { display: flex; flex-direction: column; }
+#small-screen::backdrop { background: #0d1319; }
+.screen-card { width: 100%; max-width: 420px; margin: auto; padding: 28px; border: 1px solid #2b353f; border-radius: 22px; background: #141b22; box-shadow: 0 24px 80px #0004; }
+.screen-card > img { display: block; }
+.screen-card .eyebrow { font-size: 10px; letter-spacing: 1.5px; margin: 26px 0 16px; }
+.screen-card h1 { font-size: clamp(30px, 8vw, 38px); font-weight: 600; line-height: 1.12; letter-spacing: -1.2px; margin-bottom: 18px; }
+#small-screen-description { margin: 0; color: #a8b7c1; font-size: 15px; line-height: 1.65; }
+.screen-privacy { margin: 22px 0 26px; color: #90dbbe; font-size: 13px; line-height: 1.6; }
+#continue-small-screen { width: 100%; min-height: 48px; padding: 13px 16px; border: 1px solid #90dbbe; border-radius: 9px; background: #90dbbe; color: #0d1319; font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; touch-action: manipulation; }
+#continue-small-screen:hover { background: #ace8d0; }
+#continue-small-screen:focus-visible { outline: 3px solid #dde6ed; outline-offset: 4px; }
+.screen-caveat { margin: 14px 0 0; color: #8595a1; font-size: 12px; line-height: 1.6; }
+@media (max-width: 899px), (max-height: 599px) and (pointer: coarse) {
+  #startup { padding: 20px; }
+  .welcome { width: 100%; padding: 24px; max-height: calc(100dvh - 40px); overflow-y: auto; }
+}
+@media (max-height: 599px) and (pointer: coarse) {
+  .screen-card { padding: 22px; }
+  .screen-card > img { width: 64px; height: 64px; }
+  .screen-card .eyebrow { margin: 18px 0 10px; }
+  .screen-card h1 { font-size: 30px; margin-bottom: 12px; }
+  #small-screen-description { font-size: 14px; line-height: 1.5; }
+  .screen-privacy { margin: 14px 0 18px; line-height: 1.5; }
+  .screen-caveat { margin-top: 10px; font-size: 11px; }
+}
+@media (min-width: 500px) and (max-height: 599px) and (pointer: coarse) {
+  .screen-card { max-width: 680px; }
+  .screen-card > img { width: 48px; height: 48px; float: left; margin-right: 16px; }
+  .screen-card .eyebrow { margin: 0 0 8px; }
+  .screen-card h1 { font-size: 28px; }
+  .screen-card h1 br, .screen-privacy br { display: none; }
+  #small-screen-description { clear: both; }
+  .screen-privacy { margin: 12px 0; }
+}

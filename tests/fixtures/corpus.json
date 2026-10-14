@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "samples": [
+    {
+      "id": "kicad-led-micro",
+      "toolchain": "KiCad",
+      "name": "Stephen Kent LED micro",
+      "repo": "smkent/pcb",
+      "commit": "6cab466a73cdbfd0aa05449146948c3da97524f6",
+      "license": "CERN-OHL-P-2.0",
+      "generation": "KiCad 8.0.6",
+      "expected": {"layers":11,"primitives":651,"kinds":{"BottomCopper":1,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Outline":1,"Drill":1,"Other":1},"bounds_mm":[13.05,10.55],"warnings":[]},
+      "files": [
+        {"source":"pcb/jigs/led-micro/fab/jlcpcb/led-micro-gerbers.zip","role":"input","bytes":31454,"sha256":"a2ee43b0567ded53da7e01a8c0d6ab25314bea5f641557b97b1b85f2147a22ea"},
+        {"source":"README.md","role":"provenance","bytes":2935,"sha256":"9da06a4474df0ec4abda7199112b940e25f8a19555249f258cfc6108fd6bec5c"},
+        {"source":"LICENSE.hardware","role":"provenance","bytes":8852,"sha256":"6e471d647db50527d0c75ee5f1a55a74012ab177c73282bef0bdc7f6562b7ded"}
+      ]
+    },
+    {
+      "id": "kicad-esp-av",
+      "toolchain": "KiCad",
+      "name": "Stephen Kent ESP AV",
+      "repo": "smkent/pcb",
+      "commit": "6cab466a73cdbfd0aa05449146948c3da97524f6",
+      "license": "CERN-OHL-P-2.0",
+      "generation": "KiCad 9.0.1",
+      "expected": {"layers":14,"primitives":20641,"kinds":{"BottomCopper":1,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Outline":1,"Drill":2,"Drawing":2,"Other":1},"bounds_mm":[100.05,66.05],"warnings":[]},
+      "files": [
+        {"source":"pcb/stackable3/esp-av/fab/jlcpcb/esp-av-gerbers.zip","role":"input","bytes":487434,"sha256":"bbb8240a6d460972dd616c8b6959048ac8f4563a8d7c153e1f57580883eaf849"},
+        {"source":"README.md","role":"provenance","bytes":2935,"sha256":"9da06a4474df0ec4abda7199112b940e25f8a19555249f258cfc6108fd6bec5c"},
+        {"source":"LICENSE.hardware","role":"provenance","bytes":8852,"sha256":"6e471d647db50527d0c75ee5f1a55a74012ab177c73282bef0bdc7f6562b7ded"}
+      ]
+    },
+    {
+      "id": "kicad-tillitis-mta1",
+      "toolchain": "KiCad",
+      "name": "Tillitis MTA1 USB v1",
+      "repo": "tillitis/tk1-pcba",
+      "commit": "e0cb473ca5dd34cbdc2e8a24c4b21553ed126362",
+      "license": "CERN-OHL-S-2.0",
+      "generation": "KiCad 6.0.4",
+      "expected": {"layers":13,"primitives":3069,"kinds":{"BottomCopper":1,"InnerCopper":2,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Outline":1,"Drill":2},"bounds_mm":[28.45,13.55],"warnings":[]},
+      "files": [
+        {"source":"prototypes/mta1-usb-v1/gerbers/2022-08-14_MTA1_USB_V1.zip","role":"input","bytes":91908,"sha256":"d80bfd638147fe30c50f53f977570e27a3e3ab8a7ffe48bc3ef3e05a6c1357c9"},
+        {"source":"README.md","role":"provenance","bytes":3503,"sha256":"c8d6f5d66999e56187f3e0b425274cd538d1c21bff139d7dbad52c4649e7c994"},
+        {"source":"prototypes/mta1-usb-v1/LICENSE.txt","role":"provenance","bytes":13419,"sha256":"253ad3f89603e728abfa60c36fbcaf8225cf55c1eab12725f19fb3d74d647f3a"}
+      ]
+    },
+    {
+      "id": "altium-stm32f746",
+      "toolchain": "Altium",
+      "name": "Alberto STM32F746 application board",
+      "repo": "Alberto0235/STM32F746-Application-Board",
+      "commit": "e76abed567ada0d0af330754f8976b41e0be3c45",
+      "license": "MIT",
+      "generation": "Altium Designer 26.8.1",
+      "expected": {"layers":14,"primitives":11582,"kinds":{"BottomCopper":1,"InnerCopper":2,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Outline":1,"Drill":2,"Other":1},"bounds_mm":[108.86,81.99],"warnings":[]},
+      "files": [
+        {"source":"Manufacturing/Gerbers/Gerber_STM32F746_AppBoard.zip","role":"input","bytes":352191,"sha256":"c6fa5c12d0e315df275acf9292f974513b474069fa0d6e537ddb0fc1b9c5a882"},
+        {"source":"README.md","role":"provenance","bytes":13348,"sha256":"20c97b6607a65e67cec3afa7a474f5e6cda51f2a03b101d30637e5e137050855"},
+        {"source":"LICENSE","role":"provenance","bytes":1094,"sha256":"5458b46f5a4af090874b909b43b6c98b945eb4ebcb91a94eeb043184d44533aa"}
+      ]
+    },
+    {
+      "id": "altium-limesdr-mini",
+      "toolchain": "Altium",
+      "name": "LimeSDR Mini 1v3 panel",
+      "repo": "myriadrf/LimeSDR-Mini",
+      "commit": "ade9b0663994bb039c69a5e3c7ce05b7ce727cbe",
+      "license": "CC-BY-3.0",
+      "generation": "Altium Designer 19.1.5",
+      "expected": {"layers":21,"primitives":212489,"kinds":{"BottomCopper":1,"InnerCopper":6,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Outline":1,"Drill":2,"Drawing":4},"bounds_mm":[378.69,308.29],"warnings":[]},
+      "files": [
+        {"source":"hardware/1v3/LimeSDR_Mini_1v3_DB_DFMr0.zip","role":"input","bytes":3167998,"sha256":"431389a05d26783489bf93c7c0cd517ef5ba257738ae9278e8a72061dda2c060"},
+        {"source":"README.md","role":"provenance","bytes":1775,"sha256":"5e4efbbc08580317cdbe973342c2a29d8e567b15156b7dfa84c7a130091f694f"}
+      ]
+    },
+    {
+      "id": "altium-limesdr-usb",
+      "toolchain": "Altium",
+      "name": "LimeSDR USB 1v4",
+      "repo": "myriadrf/LimeSDR-USB",
+      "commit": "c6ea7cea27b90e94625b8e49b71ee2a10a5345bb",
+      "license": "CC-BY-3.0",
+      "generation": "Altium Designer (PCB/OutJob sources)",
+      "expected": {"layers":25,"primitives":129827,"kinds":{"BottomCopper":1,"InnerCopper":10,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Outline":1,"Drill":2,"Drawing":4},"bounds_mm":[356.13,210.21],"warnings":[]},
+      "files": [
+        {"source":"hardware/plug/1v4/LimeSDR-USB_1v4_DB_DFMr9_LMS031pad.zip","role":"input","bytes":3937498,"sha256":"95062e8e92ed5117ac70d90a41c51524a59ec91e36108a4c4b4b45ea7d3bc20c"},
+        {"source":"README.md","role":"provenance","bytes":2794,"sha256":"faaf6b8c198c967e19942aee0c61cb626cef457d7211a30f3cecbe6f96025cc3"}
+      ]
+    },
+    {
+      "id": "cadence-beaglebone-black",
+      "toolchain": "Cadence",
+      "name": "BeagleBone Black Rev C",
+      "repo": "beagleboard/beaglebone-black",
+      "commit": "c7bbdb9676c0cacc8dd9a2f656ee2dab34d98fca",
+      "license": "LicenseRef-BeagleBone-design-terms",
+      "licenseNote": "The manual explicitly licenses the document CC-BY-SA-3.0; the Gerber copyright licence is not stated separately. Local testing only; do not redistribute based on the manual licence alone.",
+      "generation": "Cadence Allegro 17.2-061",
+      "expected": {"layers":15,"primitives":123385,"kinds":{"BottomCopper":1,"InnerCopper":4,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Drill":2,"Drawing":1},"bounds_mm":[156,106.87],"warnings":[],"drill":{"suffix":"210401-1-6.drl","hits":991,"tools":8,"first_center":[32.345122,42.910252],"first_diameter":0.1524}},
+      "files": [
+        {"source":"MFG/bslk.art","role":"input","bytes":459268,"sha256":"047952788ebad03c91591d4c946d308f6066d5ce5f3b034f4633a30f8ab768b3"},
+        {"source":"MFG/fab.art","role":"input","bytes":612753,"sha256":"18ab88c294e25ea96e1e4f312a35767b6e5359ed7d7139c1019628a41954ed43"},
+        {"source":"MFG/lyr1.art","role":"input","bytes":254109,"sha256":"804513997da3ee899293669e826062d3dac4892bacba9756cdc14129d0258e59"},
+        {"source":"MFG/lyr2.art","role":"input","bytes":151293,"sha256":"c08c52c56bf8e213b1d417f2201ef26f247a42204185fa8a6a1bdeedb7514fec"},
+        {"source":"MFG/lyr3.art","role":"input","bytes":168363,"sha256":"4fe185c191760b2e7064ba9ab9b2c329ebf0d0a457c34f1cad884f0554fc5d84"},
+        {"source":"MFG/lyr4.art","role":"input","bytes":152282,"sha256":"f9fb89cd484a03971c7575b5f2b0885716f4d40d6b158c99c440f8a2a14009d0"},
+        {"source":"MFG/lyr5.art","role":"input","bytes":172654,"sha256":"908c03d36a785ba8c98cff1b0bcc21ea98e85660b45893d80c6a8d116ad71f4a"},
+        {"source":"MFG/lyr6.art","role":"input","bytes":225620,"sha256":"c13e6c93e43e2e1769bf6b0921858eae466f7ae48b844f8848938febdbaf2600"},
+        {"source":"MFG/smc.art","role":"input","bytes":118171,"sha256":"b7ebf308370c076b2659f4aaf98dabe2507f2524514e3150554ec7b2913e859d"},
+        {"source":"MFG/sms.art","role":"input","bytes":114740,"sha256":"807a63d8cd4ef4f75277bbe432d0c882ef08547474b626581ada1193c195078f"},
+        {"source":"MFG/spc.art","role":"input","bytes":112607,"sha256":"29775078254b812ea8f6bd289278f90fe3fe65fc268a02b5d78dd567c5be2bb3"},
+        {"source":"MFG/sps.art","role":"input","bytes":112475,"sha256":"f586c79b683892c6076a2d2cd574a7b9db421260f6a06eafc54644847d4ef0e7"},
+        {"source":"MFG/tslk.art","role":"input","bytes":248492,"sha256":"fec353e0256964a96fe451121dacd61fe796d1f60938e5fbc5df115a85244bf0"},
+        {"source":"MFG/BeagleBone Black_PCB_RevC_no_logo_210401-1-6.drl","role":"input","bytes":17652,"sha256":"d72d5b0aec7e91db9f95ed83e36bdfcf35a0210d0b10c9280351b59e7a25a8ca"},
+        {"source":"MFG/BeagleBone Black_PCB_RevC_no_logo_210401_1-6.rou","role":"input","bytes":1004,"sha256":"1116ac8d48e3f4be54db3e004160bdb8e530869d9df041d34eb6fb4f1c8328c0"},
+        {"source":"MFG/nc_param.txt","role":"input","bytes":928,"sha256":"2e5daa7fa723d02a2a6039acb2911375dea3a4795f5e9a983649527d1863e2e3"},
+        {"source":"README.md","role":"provenance","bytes":113,"sha256":"e08914d025dd64115990750aa0c357694dda69352982f9bd9f8aa95a182e6507"},
+        {"source":"docs/OLD_BBB_SRM.pdf","role":"provenance","bytes":10046118,"sha256":"57be93ee222ec7cb44e070f699b337e24905d4dd68f8831a0cdcb769f252f9bb"}
+      ]
+    },
+    {
+      "id": "cadence-beaglebone-ai",
+      "toolchain": "Cadence",
+      "name": "BeagleBone AI",
+      "repo": "beagleboard/beaglebone-ai",
+      "commit": "819b6268c33ed85f1030205eea24a68261d30681",
+      "license": "CC-BY-4.0",
+      "generation": "Cadence Allegro 17.2-S049",
+      "expected": {"layers":22,"primitives":124425,"kinds":{"BottomCopper":1,"InnerCopper":10,"Copper":1,"Mask":2,"Paste":2,"Silk":1,"BottomSilk":1,"Drill":1,"Assembly":2,"Drawing":1},"bounds_mm":[86.49,54.74],"warnings":["ASSEM_BOT.art: Unsupported non-identity image transform: MIA1B0"],"drill":{"suffix":"BeagleBone-AI-1-12.drl","hits":1927,"tools":12,"first_center":[32.898588,33.75025],"first_diameter":0.2032,"tool_hits":[1789,12,2,3,10,92,4,4,2,4,3,2]}},
+      "files": [
+        {"source":"MFG/ASSEM_BOT.art","role":"input","bytes":492597,"sha256":"d64d5c7a865970e433899046f2ad5e009283f095d9c2ae25b37bbb11a10f10de"},
+        {"source":"MFG/ASSEM_TOP.art","role":"input","bytes":256268,"sha256":"39783a01a7cdca489bf43e5047e84072cfe9fc52dc48636d49dadc2549ae97d8"},
+        {"source":"MFG/BOTTOM.art","role":"input","bytes":125522,"sha256":"c1209eaee0f9ba11fa7e755f805987205c4e896cded751fd89a92646381700d8"},
+        {"source":"MFG/DRILL.art","role":"input","bytes":824647,"sha256":"01762af9c8748c921c5e6c4639ae724575c41fa3eca310b702f34c133410eecb"},
+        {"source":"MFG/LAY10.art","role":"input","bytes":113332,"sha256":"fa55cd3ac564a8650e5a6025ebcb2b2cc10b2ada19990671463b8d71d0c428aa"},
+        {"source":"MFG/LAY11_GND.art","role":"input","bytes":58030,"sha256":"8f8de81b91f8f1fcaecc6144edf1622eae024d6d8bc4bf4f1ccb40b5fd49ded4"},
+        {"source":"MFG/LAY2_GND.art","role":"input","bytes":58368,"sha256":"844546a2ddc4fc5a002a3e22292605dc5cd95a63fc0bfbfb2e897438317fdc75"},
+        {"source":"MFG/LAY3.art","role":"input","bytes":114340,"sha256":"1cd8794596c695e5907922825c57298990cd1873d0ac078f7de57512d45135cc"},
+        {"source":"MFG/LAY4_GND.art","role":"input","bytes":53959,"sha256":"d9226a030f9562cffd6ddd1470a8d8eaaa78ae6f550e8ff63d3af9936290ae33"},
+        {"source":"MFG/LAY5.art","role":"input","bytes":117858,"sha256":"829f9acb3b9feba865850dd55b85a6a01338f887d61029f21e8b36c7562e2d63"},
+        {"source":"MFG/LAY6_PWR.art","role":"input","bytes":71237,"sha256":"8d4f7c480d906961944641c428e96d6d50af5ba77d2fccf4496bacf7f63b01ff"},
+        {"source":"MFG/LAY7_PWR.art","role":"input","bytes":71114,"sha256":"3242059df6de414360f59dfc64bb7769558f8464b4ed6a94a392052babfd909f"},
+        {"source":"MFG/LAY8.art","role":"input","bytes":126790,"sha256":"8c75adc8bcef0a8af3c864a27d861779fbfad77a897a567e5fd05af19e53bd6c"},
+        {"source":"MFG/LAY9_GND.art","role":"input","bytes":53655,"sha256":"1dfc3844460a005f3d67f73da6ed0778944c7cd9a61946cde694bbecc2ba81bc"},
+        {"source":"MFG/MASK_BOT.art","role":"input","bytes":21184,"sha256":"c9531f8a25f36efe9ff5edcf425700d2355345fc13187f4727d0b42f705fd9da"},
+        {"source":"MFG/MASK_TOP.art","role":"input","bytes":30889,"sha256":"52f65d31b1081d990d49b1ddaef073fe27c7274db48dec30ca9bef2e4de52ef8"},
+        {"source":"MFG/PAST_BOT.art","role":"input","bytes":18527,"sha256":"28399fe4fcd67155630dd2644764738b35143b582e9fcc208cd6fedf8745aa83"},
+        {"source":"MFG/PAST_TOP.art","role":"input","bytes":28312,"sha256":"cd54064bbb46fd2c0198dcbe0092f0ff441df888ec0470d7d23ba1746e3bbaf0"},
+        {"source":"MFG/SILK_BOT.art","role":"input","bytes":75628,"sha256":"6bec7febe6fedf67a99679087bd29a12ad11699a11914d52a2e9c325f773e259"},
+        {"source":"MFG/SILK_TOP.art","role":"input","bytes":66007,"sha256":"731c30c7487e3caca671af998ce65d094b1b6bc8ebce34daf72cbac84fd2771d"},
+        {"source":"MFG/TOP.art","role":"input","bytes":183245,"sha256":"6167cb01aba4ee2afddfd03a42ef3c460f0b1da7415268d870f181d49b45e0ba"},
+        {"source":"MFG/BeagleBone-AI-1-12.drl","role":"input","bytes":33508,"sha256":"0557efe0c8ce732f2cd18dd6c3b8dd6f0b184051f3e9848f5a86e1b4aecc3e38"},
+        {"source":"MFG/nc_param.txt","role":"input","bytes":926,"sha256":"e1602e9de6cbc5639e01627ce6449680c63e3ba75387b089ebed352bf911cc32"},
+        {"source":"README.md","role":"provenance","bytes":3020,"sha256":"e18be0188135eabb4c2a5640884b5e3dbe1437afe0d1018131f6d40c5a49fbec"},
+        {"source":"LICENSE","role":"provenance","bytes":18807,"sha256":"2402af6eaf117451f58a3198d8e5a6634367818b61269976b45e70ea42fedf94"}
+      ]
+    }
+  ]
+}

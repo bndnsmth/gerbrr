@@ -1,0 +1,60 @@
+[tools]
+rust = "1.99.0"
+node = "26.8.2"
+
+[tasks.dev]
+description = "Run Gerbrr — Gerber viewing at ridiculous speed"
+run = "cargo run --release"
+
+[tasks.check]
+description = "Format, lint, and test"
+run = ["cargo fmt --check", "cargo clippy --all-targets -- -D warnings", "cargo test"]
+
+[tasks.build]
+description = "Build the optimized gerbrr CLI and native app"
+run = "cargo build --release"
+
+[tasks.web-build]
+description = "Build the Gerbrr browser PoC (project-local tooling)"
+run = "node web/build.mjs"
+
+[tasks.web-serve]
+description = "Serve the Gerbrr browser PoC on localhost:4173"
+run = "node web/serve.mjs"
+
+[tasks.web]
+description = "Build and serve Gerbrr in the browser"
+depends = ["web-build"]
+run = "node web/serve.mjs"
+
+[tasks.site-build]
+description = "Build a fingerprinted, allowlisted Cloudflare production site"
+run = "node web/build.mjs --production"
+
+[tasks.site-check]
+description = "Test production packaging without downloads or Cloudflare access"
+run = "node --test tests/site.test.mjs"
+
+[tasks.site-preview]
+description = "Preview production assets and security headers locally on port 4174"
+depends = ["site-build"]
+run = "npm run preview"
+
+[tasks.site-deploy-preview]
+description = "Build and deploy the Cloudflare workers.dev preview (no production DNS)"
+depends = ["site-build", "site-check"]
+run = "npm run deploy:preview"
+
+[tasks.site-deploy]
+description = "Build and deploy https://gerbrr.bndnsmth.com/"
+depends = ["site-build", "site-check"]
+run = "npm run deploy"
+
+[tasks.corpus-fetch]
+description = "Download and SHA-256 verify pinned public Gerber samples (optional)"
+run = "node scripts/fetch-corpus.mjs"
+
+[tasks.corpus-check]
+description = "Verify real KiCad, Altium, and Cadence native/browser imports"
+depends = ["corpus-fetch"]
+run = "cargo test --test corpus -- --include-ignored"

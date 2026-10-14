@@ -1,0 +1,19 @@
+{
+  "name": "gerbrr-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node web/build.mjs --production",
+    "site:package": "node scripts/build-site.mjs",
+    "test": "node --test tests/site.test.mjs",
+    "test:browser": "node scripts/smoke-site.mjs",
+    "preview": "wrangler dev --ip 127.0.0.1 --port 4174",
+    "deploy:preview": "node scripts/deploy-site.mjs --preview",
+    "deploy": "node scripts/deploy-site.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.150.0",
+    "playwright": "1.64.0"
+  }
+}

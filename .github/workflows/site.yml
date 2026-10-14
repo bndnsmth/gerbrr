@@ -1,0 +1,98 @@
+name: Checks and website
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  WRANGLER_SEND_METRICS: "false"
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    concurrency:
+      group: checks-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@08ae2a091c038e1e05ec6f5115dc5c69d5a2a6b8 # v5.1.2
+      - name: Install native graphics build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libwayland-dev libxkbcommon-dev libudev-dev libxcb-shape0-dev libxcb-xfixes0-dev libvulkan1 mesa-vulkan-drivers
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/.npm
+            target/tools
+          key: build-${{ runner.os }}-${{ hashFiles('Cargo.lock', 'package-lock.json', 'mise.toml') }}
+      - name: Install Rust check components
+        run: rustup component add rustfmt clippy
+      - name: Native format, lint, and regression tests
+        run: mise run check
+      - name: Install pinned project-local deployment tools
+        run: npm ci --ignore-scripts
+      - name: Packaging and DNS safety tests
+        run: npm test
+      - name: Build the production site
+        run: npm run build
+      - name: WASM lint
+        run: cargo clippy --lib --target wasm32-unknown-unknown -- -D warnings
+      - name: Install the test browser
+        run: npm exec -- playwright install --with-deps chromium
+      - name: Test the actual production worker and both renderers
+        run: npm run test:browser
+      - name: Validate Cloudflare configuration without deploying
+        run: npm exec -- wrangler deploy --env production --dry-run
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: gerbrr-site-${{ github.sha }}
+          path: dist/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+
+  deploy:
+    needs: check
+    if: >-
+      github.repository == 'bndnsmth/gerbrr' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: gerbrr-production
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: https://gerbrr.bndnsmth.com/
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@08ae2a091c038e1e05ec6f5115dc5c69d5a2a6b8 # v5.1.2
+        with:
+          install_args: node
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: gerbrr-site-${{ github.sha }}
+          path: dist/
+      - name: Deploy the already-tested artifact without DNS overrides
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node -e "for (const name of ['CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN']) if (!process.env[name]) throw new Error('Set ' + name + ' in the production environment')"
+          npm run deploy

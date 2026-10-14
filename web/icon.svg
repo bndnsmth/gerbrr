@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Gerbrr the safety-conscious gerbil</title>
+  <desc id="desc">A little sandy-brown gerbil wearing mint safety goggles and holding a tiny circuit board.</desc>
+  <rect width="256" height="256" rx="40" fill="#141b22"/>
+  <g stroke="#77513b" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M180 212c43 9 58-13 51-30-4-10-16-11-21-3" fill="none" stroke="#b9855e" stroke-width="12"/>
+    <ellipse cx="127" cy="179" rx="60" ry="51" fill="#c89365" stroke-width="5"/>
+    <ellipse cx="127" cy="182" rx="37" ry="36" fill="#f4dfbc" stroke="none"/>
+    <ellipse cx="91" cy="223" rx="25" ry="11" fill="#d9aa7a" stroke-width="4"/>
+    <ellipse cx="163" cy="223" rx="25" ry="11" fill="#d9aa7a" stroke-width="4"/>
+    <path d="M83 223v5m9-5v6m61-6v6m10-6v5" stroke-width="2.5"/>
+    <circle cx="76" cy="62" r="29" fill="#c89365" stroke-width="5"/>
+    <circle cx="180" cy="62" r="29" fill="#c89365" stroke-width="5"/>
+    <circle cx="76" cy="62" r="19" fill="#eeb5a0" stroke="none"/>
+    <circle cx="180" cy="62" r="19" fill="#eeb5a0" stroke="none"/>
+    <path d="M52 108c0-39 24-64 76-64s76 25 76 64c4 37-26 63-76 65-50-2-80-28-76-65Z" fill="#d9aa7a" stroke-width="5"/>
+    <path d="m116 46 7-12 8 11 9-6 4 8" fill="#d9aa7a" stroke-width="4"/>
+    <ellipse cx="128" cy="143" rx="48" ry="27" fill="#f4dfbc" stroke="none"/>
+    <ellipse cx="95" cy="107" rx="11" ry="13" fill="#332a25" stroke="none"/>
+    <ellipse cx="161" cy="107" rx="11" ry="13" fill="#332a25" stroke="none"/>
+    <circle cx="98" cy="103" r="3.3" fill="#fff9ea" stroke="none"/>
+    <circle cx="164" cy="103" r="3.3" fill="#fff9ea" stroke="none"/>
+    <g stroke="#90dbbe" stroke-width="7">
+      <path d="M53 99h12m127 0h11"/>
+      <rect x="64" y="84" width="57" height="48" rx="16" fill="#90dbbe" fill-opacity=".13"/>
+      <rect x="135" y="84" width="57" height="48" rx="16" fill="#90dbbe" fill-opacity=".13"/>
+      <path d="M121 101q7-6 14 0" fill="none"/>
+    </g>
+    <path d="m74 95 6-4m62 5 7-5" stroke="#f4fffa" stroke-width="3" opacity=".7"/>
+    <path d="M118 139q10-7 20 0l-7 8q-3 3-6 0Z" fill="#6b4335" stroke-width="2"/>
+    <path d="M128 149v7m-12 0q12 12 24 0" fill="none" stroke-width="3"/>
+    <rect x="121" y="160" width="7" height="11" rx="2" fill="#fff9ea" stroke-width="1.5"/>
+    <rect x="129" y="160" width="7" height="11" rx="2" fill="#fff9ea" stroke-width="1.5"/>
+    <g stroke="#ead7b9" stroke-width="2.5">
+      <path d="m98 144-38-8m36 15-39 1m41 6-31 11m91-25 38-8m-36 15 39 1m-41 6 31 11"/>
+    </g>
+    <g transform="rotate(-8 128 192)">
+      <rect x="105" y="178" width="46" height="33" rx="5" fill="#23463e" stroke="#90dbbe" stroke-width="3"/>
+      <rect x="121" y="187" width="13" height="12" rx="2" fill="#90dbbe" stroke="none"/>
+      <path d="M112 185h5v17h-5m25-17h7v17h-7" fill="none" stroke="#90dbbe" stroke-width="2"/>
+      <path d="M125 183v4m5-4v4m-5 12v6m5-6v6" stroke="#90dbbe" stroke-width="2"/>
+    </g>
+    <ellipse cx="92" cy="186" rx="14" ry="10" transform="rotate(-25 92 186)" fill="#d9aa7a" stroke-width="3"/>
+    <ellipse cx="164" cy="186" rx="14" ry="10" transform="rotate(25 164 186)" fill="#d9aa7a" stroke-width="3"/>
+  </g>
+</svg>
