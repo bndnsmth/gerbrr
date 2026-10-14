@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Gerbrr third-party licenses</title>
+<style>body{max-width:960px;margin:40px auto;padding:0 24px;font:15px/1.6 system-ui,sans-serif}pre{white-space:pre-wrap;overflow-wrap:anywhere}section{border-top:1px solid #ddd;padding-top:20px;margin-top:30px}</style>
+</head><body><h1>Gerbrr third-party licenses</h1>
+<p>License texts and attribution for this build's Rust dependencies and embedded fonts. Gerbrr's own license and the GitHub icon notice are provided separately.</p>
+{{#each licenses}}
+<section><h2>{{name}}</h2><ul>
+{{#each used_by}}<li>{{crate.name}} {{crate.version}}{{#if crate.repository}} — {{crate.repository}}{{/if}}</li>{{/each}}
+</ul><pre>{{text}}</pre></section>
+{{/each}}
+</body></html>

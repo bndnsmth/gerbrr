@@ -91,6 +91,6 @@ Found a tricky export? [Open an issue](https://github.com/bndnsmth/gerbrr/issues
 with what you expected, what happened, and a small sample **if you can share it**.
 For code changes, run `mise run check` before submitting a pull request.
 
-[User guide](GUIDE.md) · [Browser architecture](WEB.md) · [Deployment](DEPLOY.md) · [Performance notes](PERFORMANCE.md) · [Regression corpus](CORPUS.md)
+[User guide](GUIDE.md) · [Browser architecture](WEB.md) · [Deployment](DEPLOY.md) · [Releases](RELEASING.md) · [Performance notes](PERFORMANCE.md) · [Regression corpus](CORPUS.md)
 
 [MIT licensed](LICENSE). Dependencies and [third-party assets](assets/README.md) retain their respective licenses.

@@ -1,0 +1,134 @@
+name: Native release artifacts
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: native-release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_PROFILE_RELEASE_STRIP: symbols
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@08ae2a091c038e1e05ec6f5115dc5c69d5a2a6b8 # v5.1.2
+        with:
+          install_args: node
+      - name: Validate tag against Cargo.toml
+        id: version
+        env:
+          RELEASE_TAG: ${{ github.event_name == 'push' && github.ref_name || '' }}
+        run: node scripts/release.mjs info
+
+  build:
+    needs: prepare
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+          - runner: windows-2022
+            target: x86_64-pc-windows-msvc
+          - runner: macos-15
+            target: aarch64-apple-darwin
+          - runner: macos-15-intel
+            target: x86_64-apple-darwin
+    defaults:
+      run:
+        shell: bash
+    env:
+      RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+      MACOSX_DEPLOYMENT_TARGET: "13.0"
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@08ae2a091c038e1e05ec6f5115dc5c69d5a2a6b8 # v5.1.2
+      - name: Cache crate downloads and the pinned license tool
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target/tools
+          key: native-${{ runner.os }}-${{ matrix.target }}-about-0.9.2-${{ hashFiles('Cargo.lock', 'mise.toml') }}
+      - name: Install Linux graphics libraries
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libwayland-dev libxkbcommon-dev libudev-dev libxcb-shape0-dev libxcb-xfixes0-dev libvulkan1 mesa-vulkan-drivers
+      - name: Install the native Rust target
+        run: rustup target add '${{ matrix.target }}'
+      - name: Test release packaging helpers
+        run: node --test tests/release.test.mjs
+      - name: Native regression tests
+        run: cargo test --locked --target '${{ matrix.target }}'
+      - name: Build the native release executable
+        env:
+          RUSTFLAGS: --remap-path-prefix=${{ github.workspace }}=.
+        run: cargo build --release --locked --bin gerbrr --target '${{ matrix.target }}'
+      - name: Install the pinned license notice generator
+        run: |
+          cargo install cargo-about --version 0.9.2 --features cli --locked --root target/tools
+          node -e "require('fs').appendFileSync(process.env.GITHUB_PATH, require('path').resolve('target/tools/bin') + '\n')"
+      - name: Generate dependency and font license notices
+        run: |
+          mkdir -p target/release-notices
+          cargo about generate --locked --fail --target '${{ matrix.target }}' --output-file 'target/release-notices/${{ matrix.target }}.html' release/licenses.hbs
+      - name: Package and smoke-test the executable
+        run: node scripts/release.mjs package '${{ matrix.target }}'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: native-${{ needs.prepare.outputs.tag }}-${{ matrix.target }}
+          path: |
+            target/release-artifacts/*.tar.gz
+            target/release-artifacts/*.zip
+            target/release-artifacts/*.sha256
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+
+  release:
+    needs: [prepare, build]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@08ae2a091c038e1e05ec6f5115dc5c69d5a2a6b8 # v5.1.2
+        with:
+          install_args: node
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: native-${{ needs.prepare.outputs.tag }}-*
+          path: target/release-artifacts
+          merge-multiple: true
+      - name: Verify all packages and create a draft GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/release.mjs publish

@@ -14,6 +14,10 @@ run = ["cargo fmt --check", "cargo clippy --all-targets -- -D warnings", "cargo 
 description = "Build the optimized gerbrr CLI and native app"
 run = "cargo build --release"
 
+[tasks.release-check]
+description = "Validate native release versions and packaging helpers"
+run = "node --test tests/release.test.mjs"
+
 [tasks.web-build]
 description = "Build the Gerbrr browser PoC (project-local tooling)"
 run = "node web/build.mjs"
