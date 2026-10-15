@@ -3,7 +3,7 @@
   <h1>Gerbrr</h1>
   <p><strong>Gerber viewing at ridiculous speed.</strong></p>
   <p>A fast, local-first Gerber viewer. Native desktop. Same workspace in your browser.<br>Warm copper, quiet chrome, and a gerbil who takes eye protection seriously.</p>
-  <p><a href="https://gerbrr.bndnsmth.com/">Try Gerbrr →</a> · <a href="#get-started">Build locally</a> · <a href="GUIDE.md">User guide</a></p>
+  <p><a href="https://gerbrr.bndnsmth.com/">Try Gerbrr →</a> · <a href="#download">Download</a> · <a href="#build-from-source">Build locally</a> · <a href="GUIDE.md">User guide</a></p>
 </div>
 
 ![Gerbrr's native workspace showing the Atlas demo board, copper traces, silkscreen, and compact layer controls](assets/preview.png)
@@ -25,7 +25,27 @@ Built with **Rust · egui · wgpu**. Tested against [eight real KiCad, Altium, a
 
 **[Open Gerbrr in your browser →](https://gerbrr.bndnsmth.com/)** No installation. Your boards stay local.
 
-Prefer to run it yourself?
+### Download
+
+**[Get the latest desktop release →](https://github.com/bndnsmth/gerbrr/releases/latest)** No Rust or Node installation needed.
+
+| Your computer | Archive ending in |
+| --- | --- |
+| Linux x86-64, glibc 2.35+ | `linux-x86_64.tar.gz` |
+| Windows x86-64 | `windows-x86_64.zip` |
+| macOS 13+, Apple Silicon | `macos-arm64.zip` |
+| macOS 13+, Intel | `macos-x86_64.zip` |
+
+Extract the archive, then:
+
+- **Linux:** run `./gerbrr` from the extracted folder. Desktop graphics libraries and a compatible driver are required.
+- **Windows:** open `gerbrr.exe`. Builds are unsigned; if SmartScreen blocks a trusted release download, choose **More info → Run anyway**.
+- **macOS:** move **Gerbrr.app** to Applications and open it. Builds are ad-hoc signed, not Apple-notarized. If macOS cannot verify the app, dismiss the warning, then choose **System Settings → Privacy & Security → Open Anyway** and confirm **Open**.
+
+Only approve downloads you trust; no system-wide security changes are needed.
+Each package includes license notices, and each release includes `SHA256SUMS` for archive verification.
+
+### Build from source
 
 Build from source with [mise](https://mise.jdx.dev/); Rust and Node versions are pinned for you.
 
@@ -51,20 +71,23 @@ mise run web
 Open **[localhost:4173](http://localhost:4173)**. Both versions start with the Atlas
 demo—drop your board ZIP or choose **Open board** to view your own design.
 
-Native builds are tested on Linux and require a desktop session and compatible
-graphics adapter. The browser needs **WebGPU or WebGL2**; desktop-sized windows
+Desktop apps require a desktop session and compatible graphics driver.
+The browser needs **WebGPU or WebGL2**; desktop-sized windows
 are recommended. [Browser details →](WEB.md)
 Small screens show a desktop-first notice with **Continue anyway**; mobile layout support is still to come.
 
 ### Prefer a terminal?
 
-After building the desktop app:
+The desktop download includes the CLI. From an extracted Linux package:
 
 ```sh
-./target/release/gerbrr open board.zip
-./target/release/gerbrr inspect board.zip
-./target/release/gerbrr screenshot board.png board.zip
+./gerbrr open board.zip
+./gerbrr inspect board.zip
+./gerbrr screenshot board.png board.zip
 ```
+
+On Windows use `.\gerbrr.exe`; on macOS use `./Gerbrr.app/Contents/MacOS/gerbrr`.
+For a source build, use `./target/release/gerbrr` instead.
 
 ### A few keys go a long way
 
