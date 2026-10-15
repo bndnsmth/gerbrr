@@ -9,17 +9,40 @@ impl Fixture {
             .duration_since(std::time::UNIX_EPOCH)
             .unwrap()
             .as_nanos();
-        let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-            .join("target/test-imports")
-            .join(format!("{}-{nonce}", std::process::id()));
-        std::fs::create_dir_all(&path).unwrap();
-        Self(path)
+        Self::with_nonce(nonce)
+    }
+
+    fn with_nonce(nonce: u128) -> Self {
+        let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/test-imports");
+        std::fs::create_dir_all(&root).unwrap();
+        let mut attempt = 0_u64;
+        loop {
+            let path = root.join(format!("{}-{nonce}-{attempt}", std::process::id()));
+            // Claim a directory atomically: parallel tests can share a timestamp,
+            // but must never share a fixture that one of them could remove.
+            match std::fs::create_dir(&path) {
+                Ok(()) => return Self(path),
+                Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => attempt += 1,
+                Err(error) => panic!("Cannot create import fixture {}: {error}", path.display()),
+            }
+        }
     }
 }
 impl Drop for Fixture {
     fn drop(&mut self) {
         let _ = std::fs::remove_dir_all(&self.0);
     }
+}
+
+#[test]
+fn fixture_directories_remain_isolated_when_timestamps_collide() {
+    let first = Fixture::with_nonce(0);
+    let second = Fixture::with_nonce(0);
+    assert_ne!(first.0, second.0);
+    let file = second.0.join("keep.txt");
+    std::fs::write(&file, "second fixture").unwrap();
+    drop(first);
+    assert_eq!(std::fs::read_to_string(file).unwrap(), "second fixture");
 }
 
 #[test]
