@@ -1,6 +1,6 @@
 use gerbrr::document;
 use std::io::Write;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 struct Fixture(PathBuf);
 impl Fixture {
@@ -101,12 +101,17 @@ fn native_recursive_import_keeps_nc_settings_scoped_to_their_directory() {
     assert_eq!(doc.layers.len(), 2);
     assert_eq!(doc.warning_count(), 1);
     for layer in &doc.layers {
-        let expected = if layer.name.starts_with("a/") {
-            25.4
-        } else {
-            254.0
+        let expected = match Path::new(&layer.name).parent().and_then(Path::to_str) {
+            Some("a") => 25.4,
+            Some("b") => 254.0,
+            _ => panic!("Unexpected imported path: {}", layer.name),
         };
-        assert!((layer.geometry.bounds.center()[0] - expected).abs() < 0.002);
+        let actual = layer.geometry.bounds.center()[0];
+        assert!(
+            (actual - expected).abs() < 0.002,
+            "{}: expected X {expected}, got {actual}",
+            layer.name
+        );
     }
 }
 
